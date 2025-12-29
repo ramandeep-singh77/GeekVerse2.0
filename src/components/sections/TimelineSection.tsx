@@ -24,66 +24,54 @@ const TimelineSection = () => {
           {/* Desktop Timeline line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block"></div>
           
+          {/* Mobile Timeline line */}
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-border md:hidden"></div>
+          
           {/* Data flow effect - Desktop */}
           <div className="absolute left-1/2 top-0 w-px h-full -translate-x-1/2 hidden md:block overflow-hidden">
             <div className="w-full h-20 bg-gradient-to-b from-transparent via-primary to-transparent animate-[flow_3s_linear_infinite]"></div>
           </div>
 
-          {/* Mobile Layout - Alternating/Staggered */}
+          {/* Data flow effect - Mobile */}
+          <div className="absolute left-6 top-0 w-px h-full md:hidden overflow-hidden">
+            <div className="w-full h-20 bg-gradient-to-b from-transparent via-primary to-transparent animate-[flow_3s_linear_infinite]"></div>
+          </div>
+
+          {/* Mobile Layout - Simple Vertical */}
           <div className="md:hidden space-y-6">
             {steps.map((step, idx) => (
-              <div
-                key={idx}
-                className={`relative flex items-center ${
-                  idx % 2 === 0 ? 'justify-start' : 'justify-end'
-                }`}
-              >
-                {/* Mobile Content with alternating alignment */}
-                <div className={`flex items-center gap-3 ${
-                  idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                } max-w-[85%]`}>
-                  
-                  {/* Mobile Node */}
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-card border-2 border-border flex items-center justify-center z-10">
-                    <step.icon className={`w-4 h-4 ${
-                      step.status === 'active' ? 'text-primary' : 'text-muted-foreground'
-                    }`} />
-                  </div>
-
-                  {/* Mobile Content Card */}
-                  <div className={`p-4 rounded-lg bg-card border border-border ${
-                    step.status === 'active' ? 'border-primary/50 glow-sm' : ''
-                  } ${idx % 2 === 0 ? 'text-left' : 'text-right'}`}>
-                    <div className="mb-1">
-                      <span className={`font-mono text-xs ${
-                        step.status === 'active' ? 'text-primary' : 'text-muted-foreground'
-                      }`}>
-                        {step.time}
-                      </span>
-                    </div>
-                    <h3 className="text-sm font-semibold text-foreground font-heading leading-tight">
-                      {step.title}
-                    </h3>
-                    {step.status === 'active' && (
-                      <div className={`mt-2 font-mono text-xs text-primary flex items-center gap-1 ${
-                        idx % 2 === 0 ? 'justify-start' : 'justify-end'
-                      }`}>
-                        <span className="relative flex h-1.5 w-1.5">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
-                        </span>
-                        <span className="text-xs">ACTIVE</span>
-                      </div>
-                    )}
-                  </div>
+              <div key={idx} className="relative flex items-center">
+                {/* Mobile Node */}
+                <div className="flex w-12 h-12 rounded-lg bg-card border-2 border-border items-center justify-center z-10 mr-4">
+                  <step.icon className={`w-5 h-5 ${
+                    step.status === 'active' ? 'text-primary' : 'text-muted-foreground'
+                  }`} />
                 </div>
 
-                {/* Connecting line to next element */}
-                {idx < steps.length - 1 && (
-                  <div className={`absolute ${
-                    idx % 2 === 0 ? 'right-[7.5%]' : 'left-[7.5%]'
-                  } bottom-0 w-px h-6 bg-border`}></div>
-                )}
+                {/* Mobile Content */}
+                <div className={`flex-1 p-4 rounded-lg bg-card border border-border ${
+                  step.status === 'active' ? 'border-primary/50 glow-sm' : ''
+                }`}>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className={`font-mono text-xs ${
+                      step.status === 'active' ? 'text-primary' : 'text-muted-foreground'
+                    }`}>
+                      {step.time}
+                    </span>
+                  </div>
+                  <h3 className="text-base font-semibold text-foreground font-heading">
+                    {step.title}
+                  </h3>
+                  {step.status === 'active' && (
+                    <div className="mt-2 font-mono text-xs text-primary flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                      </span>
+                      CURRENTLY EXECUTING
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>

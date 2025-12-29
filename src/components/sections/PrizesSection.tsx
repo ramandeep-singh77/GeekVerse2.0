@@ -70,60 +70,54 @@ const PrizesSection = () => {
           description="Exceptional innovation deserves exceptional recognition. Here's what awaits the top performers."
         />
 
-        {/* Mobile Layout - Staggered */}
-        <div className="lg:hidden space-y-6">
+        {/* Mobile Layout - 2x2 Grid */}
+        <div className="grid grid-cols-2 gap-3 lg:hidden">
           {prizes.map((prize, idx) => (
             <div
               key={idx}
-              className={`flex ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}
-            >
-              <div className={`relative p-4 rounded-lg border transition-all duration-300 group w-[80%] ${
+              className={`relative aspect-square p-3 rounded-lg border transition-all duration-300 group ${
                 prize.highlight 
                   ? 'bg-primary/10 border-primary/50 hover:border-primary' 
                   : 'bg-card border-border hover:border-primary/30'
-              } ${idx % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}>
-                
-                {/* Prize icon */}
-                <div className={`flex items-center justify-center mb-3 ${
-                  idx % 2 === 0 ? 'justify-start' : 'justify-end'
+              }`}
+            >
+              {/* Top reward badge */}
+              {prize.highlight && (
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-primary text-primary-foreground font-mono text-xs rounded">
+                  TOP
+                </div>
+              )}
+
+              <div className="text-center h-full flex flex-col justify-between">
+                <div className={`inline-flex p-2 rounded-lg mb-2 ${
+                  prize.highlight ? 'bg-primary/20' : 'bg-muted'
                 }`}>
-                  <div className={`inline-flex p-3 rounded-xl ${
-                    prize.highlight ? 'bg-primary/20' : 'bg-muted'
-                  }`}>
-                    <prize.icon className={`w-6 h-6 ${prize.highlight ? 'text-primary' : 'text-primary/70'}`} />
-                  </div>
+                  <prize.icon className={`w-5 h-5 ${prize.highlight ? 'text-primary' : 'text-primary/70'}`} />
                 </div>
 
-                {/* Prize amount */}
-                <div className={`mb-2 ${idx % 2 === 0 ? 'text-left' : 'text-right'}`}>
-                  <div className={`text-2xl font-mono font-bold ${
-                    prize.highlight ? 'text-primary text-glow' : 'text-foreground'
-                  }`}>
-                    <AnimatedCounter value={prize.value} />
-                  </div>
-                </div>
-
-                {/* Prize title */}
-                <h3 className={`text-lg font-semibold font-heading mb-2 ${
+                <h3 className={`text-sm font-semibold font-heading mb-1 ${
                   prize.highlight ? 'text-primary' : 'text-foreground'
-                } ${idx % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                }`}>
                   {prize.title}
                 </h3>
 
-                {/* Prize description */}
-                <p className={`text-sm text-muted-foreground ${
-                  idx % 2 === 0 ? 'text-left' : 'text-right'
+                <div className={`text-lg font-mono font-bold mb-1 ${
+                  prize.highlight ? 'text-primary text-glow' : 'text-foreground'
                 }`}>
+                  <AnimatedCounter value={prize.value} />
+                </div>
+
+                <p className="text-xs text-muted-foreground">
                   {prize.description}
                 </p>
-
-                {/* Execution line effect */}
-                {prize.highlight && (
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-muted overflow-hidden rounded-b-lg">
-                    <div className="h-full bg-primary execution-line"></div>
-                  </div>
-                )}
               </div>
+
+              {/* Execution line effect */}
+              {prize.highlight && (
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-muted overflow-hidden rounded-b-lg">
+                  <div className="h-full bg-primary execution-line"></div>
+                </div>
+              )}
             </div>
           ))}
         </div>

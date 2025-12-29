@@ -1,30 +1,30 @@
 import SectionHeader from '../SectionHeader';
-import { Brain, Globe, Shield, Sparkles } from 'lucide-react';
+import { Brain, Code, Shield, Lightbulb } from 'lucide-react';
 
 const domains = [
   {
     icon: Brain,
     title: 'AI & Machine Learning',
-    description: 'Build intelligent systems that learn, adapt, and solve complex problems autonomously.',
-    code: 'ai.neural.train()',
+    description: 'Build intelligent systems that learn, adapt, and solve complex problems.',
+    code: 'train_model --data=hackathon.csv',
   },
   {
-    icon: Globe,
-    title: 'Web & App Development',
-    description: 'Create scalable applications with modern frameworks and cutting-edge technologies.',
-    code: 'app.deploy.prod()',
+    icon: Code,
+    title: 'Web Development',
+    description: 'Create responsive, scalable web applications with modern frameworks.',
+    code: 'npm create app --template=react',
   },
   {
     icon: Shield,
     title: 'Cybersecurity',
-    description: 'Develop secure systems, detect vulnerabilities, and protect digital infrastructure.',
-    code: 'security.fortify()',
+    description: 'Develop security solutions to protect digital infrastructure.',
+    code: 'scan --target=network --deep',
   },
   {
-    icon: Sparkles,
+    icon: Lightbulb,
     title: 'Open Innovation',
-    description: 'No boundaries. Any domain. Build what the world needs next.',
-    code: 'innovation.unleash()',
+    description: 'Think outside the box and create solutions for emerging challenges.',
+    code: 'innovate --mode=creative',
   },
 ];
 
@@ -38,60 +38,47 @@ const DomainsSection = () => {
           description="Select your compile target. Each domain represents a unique challenge pathway."
         />
 
-        {/* Mobile Layout - Staggered */}
-        <div className="md:hidden space-y-6">
+        {/* Mobile Layout - 2x2 Grid */}
+        <div className="grid grid-cols-2 gap-3 md:hidden">
           {domains.map((domain, idx) => (
             <div
               key={idx}
-              className={`flex ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+              className="group relative aspect-square p-3 rounded-lg bg-card border border-border overflow-hidden card-hover cursor-pointer"
             >
-              <div className={`group relative p-4 rounded-lg bg-card border border-border overflow-hidden card-hover cursor-pointer w-[85%] ${
-                idx % 2 === 0 ? 'mr-auto' : 'ml-auto'
-              }`}>
-                {/* Hover glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  <div className={`flex items-start justify-between mb-4 ${
-                    idx % 2 === 0 ? '' : 'flex-row-reverse'
-                  }`}>
-                    <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
-                      <domain.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <span className="font-mono text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                      EXECUTE
-                    </span>
+              {/* Hover glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Content */}
+              <div className="relative z-10 h-full flex flex-col">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="p-2 rounded-md bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                    <domain.icon className="w-4 h-4 text-primary" />
                   </div>
-
-                  <h3 className={`text-lg font-semibold text-foreground mb-2 font-heading ${
-                    idx % 2 === 0 ? 'text-left' : 'text-right'
-                  }`}>
-                    {domain.title}
-                  </h3>
-                  <p className={`text-muted-foreground mb-4 text-sm ${
-                    idx % 2 === 0 ? 'text-left' : 'text-right'
-                  }`}>
-                    {domain.description}
-                  </p>
-
-                  {/* Code line */}
-                  <div className={`font-mono text-sm text-primary/70 flex items-center gap-2 ${
-                    idx % 2 === 0 ? 'justify-start' : 'justify-end'
-                  }`}>
-                    <span className="text-muted-foreground">$</span>
-                    <span className="group-hover:text-primary transition-colors">{domain.code}</span>
-                    <span className="w-2 h-4 bg-primary/50 animate-pulse"></span>
-                  </div>
+                  <span className="font-mono text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                    EXEC
+                  </span>
                 </div>
 
-                {/* Animated border */}
-                <div className="absolute inset-0 rounded-lg border border-primary/0 group-hover:border-primary/30 transition-colors"></div>
-                
-                {/* Corner decoration */}
-                <div className={`absolute top-0 ${idx % 2 === 0 ? 'right-0' : 'left-0'} w-12 h-12 overflow-hidden`}>
-                  <div className={`absolute ${idx % 2 === 0 ? '-top-6 -right-6' : '-top-6 -left-6'} w-12 h-12 bg-primary/10 rotate-45`}></div>
+                <h3 className="text-sm font-semibold text-foreground mb-2 font-heading leading-tight">
+                  {domain.title}
+                </h3>
+                <p className="text-xs text-muted-foreground mb-2 flex-1">
+                  {domain.description}
+                </p>
+
+                {/* Code line */}
+                <div className="font-mono text-xs text-primary/70 flex items-center gap-1">
+                  <span className="text-muted-foreground">$</span>
+                  <span className="group-hover:text-primary transition-colors truncate">{domain.code}</span>
                 </div>
+              </div>
+
+              {/* Animated border */}
+              <div className="absolute inset-0 rounded-lg border border-primary/0 group-hover:border-primary/30 transition-colors"></div>
+              
+              {/* Corner decoration */}
+              <div className="absolute top-0 right-0 w-8 h-8 overflow-hidden">
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary/10 rotate-45"></div>
               </div>
             </div>
           ))}
