@@ -21,11 +21,19 @@ const TimelineSection = () => {
         />
 
         <div className="relative">
-          {/* Timeline line */}
+          {/* Desktop Timeline line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block"></div>
           
-          {/* Data flow effect */}
+          {/* Mobile Timeline line */}
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-border md:hidden"></div>
+          
+          {/* Data flow effect - Desktop */}
           <div className="absolute left-1/2 top-0 w-px h-full -translate-x-1/2 hidden md:block overflow-hidden">
+            <div className="w-full h-20 bg-gradient-to-b from-transparent via-primary to-transparent animate-[flow_3s_linear_infinite]"></div>
+          </div>
+
+          {/* Data flow effect - Mobile */}
+          <div className="absolute left-6 top-0 w-px h-full md:hidden overflow-hidden">
             <div className="w-full h-20 bg-gradient-to-b from-transparent via-primary to-transparent animate-[flow_3s_linear_infinite]"></div>
           </div>
 
@@ -37,9 +45,16 @@ const TimelineSection = () => {
                   idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
               >
+                {/* Mobile Node */}
+                <div className="flex md:hidden w-12 h-12 rounded-lg bg-card border-2 border-border items-center justify-center z-10 mr-4">
+                  <step.icon className={`w-5 h-5 ${
+                    step.status === 'active' ? 'text-primary' : 'text-muted-foreground'
+                  }`} />
+                </div>
+
                 {/* Content */}
                 <div className={`flex-1 ${idx % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                  <div className={`inline-block p-6 rounded-lg bg-card border border-border ${
+                  <div className={`inline-block p-6 rounded-lg bg-card border border-border w-full md:w-auto ${
                     step.status === 'active' ? 'border-primary/50 glow-sm' : ''
                   }`}>
                     <div className={`flex items-center gap-3 mb-2 ${
@@ -66,14 +81,14 @@ const TimelineSection = () => {
                   </div>
                 </div>
 
-                {/* Node */}
+                {/* Desktop Node */}
                 <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-lg bg-card border-2 border-border items-center justify-center z-10">
                   <step.icon className={`w-5 h-5 ${
                     step.status === 'active' ? 'text-primary' : 'text-muted-foreground'
                   }`} />
                 </div>
 
-                {/* Spacer for the other side */}
+                {/* Spacer for the other side - Desktop only */}
                 <div className="hidden md:block flex-1"></div>
               </div>
             ))}
