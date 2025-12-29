@@ -70,7 +70,68 @@ const PrizesSection = () => {
           description="Exceptional innovation deserves exceptional recognition. Here's what awaits the top performers."
         />
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        {/* Mobile Layout - Staggered */}
+        <div className="lg:hidden space-y-6">
+          {prizes.map((prize, idx) => (
+            <div
+              key={idx}
+              className={`flex ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+            >
+              <div className={`relative p-4 rounded-lg border transition-all duration-300 group w-[80%] ${
+                prize.highlight 
+                  ? 'bg-primary/10 border-primary/50 hover:border-primary' 
+                  : 'bg-card border-border hover:border-primary/30'
+              } ${idx % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}>
+                
+                {/* Prize icon/rank */}
+                <div className={`flex items-center justify-between mb-3 ${
+                  idx % 2 === 0 ? '' : 'flex-row-reverse'
+                }`}>
+                  <div className={`text-2xl ${prize.highlight ? 'text-primary' : 'text-muted-foreground'}`}>
+                    {prize.icon}
+                  </div>
+                  <span className={`font-mono text-xs ${
+                    prize.highlight ? 'text-primary' : 'text-muted-foreground'
+                  }`}>
+                    {prize.rank}
+                  </span>
+                </div>
+
+                {/* Prize amount */}
+                <div className={`mb-2 ${idx % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                  <AnimatedCounter 
+                    value={prize.amount} 
+                    suffix=""
+                  />
+                </div>
+
+                {/* Prize title */}
+                <h3 className={`text-lg font-semibold font-heading mb-2 ${
+                  prize.highlight ? 'text-primary' : 'text-foreground'
+                } ${idx % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                  {prize.title}
+                </h3>
+
+                {/* Prize description */}
+                <p className={`text-sm text-muted-foreground ${
+                  idx % 2 === 0 ? 'text-left' : 'text-right'
+                }`}>
+                  {prize.description}
+                </p>
+
+                {/* Execution line effect */}
+                {prize.highlight && (
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-muted overflow-hidden rounded-b-lg">
+                    <div className="h-full bg-primary execution-line"></div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden lg:grid lg:grid-cols-4 gap-6">
           {prizes.map((prize, idx) => (
             <div
               key={idx}
@@ -80,6 +141,47 @@ const PrizesSection = () => {
                   : 'bg-card border-border hover:border-primary/30'
               }`}
             >
+              {/* Prize icon/rank */}
+              <div className="flex items-center justify-between mb-4">
+                <div className={`text-3xl ${prize.highlight ? 'text-primary' : 'text-muted-foreground'}`}>
+                  {prize.icon}
+                </div>
+                <span className={`font-mono text-xs ${
+                  prize.highlight ? 'text-primary' : 'text-muted-foreground'
+                }`}>
+                  {prize.rank}
+                </span>
+              </div>
+
+              {/* Prize amount */}
+              <div className="mb-3">
+                <AnimatedCounter 
+                  value={prize.amount} 
+                  suffix=""
+                />
+              </div>
+
+              {/* Prize title */}
+              <h3 className={`text-xl font-semibold font-heading mb-3 ${
+                prize.highlight ? 'text-primary' : 'text-foreground'
+              }`}>
+                {prize.title}
+              </h3>
+
+              {/* Prize description */}
+              <p className="text-muted-foreground">
+                {prize.description}
+              </p>
+
+              {/* Execution line effect */}
+              {prize.highlight && (
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-muted overflow-hidden rounded-b-lg">
+                  <div className="h-full bg-primary execution-line"></div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
               {prize.highlight && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground font-mono text-xs rounded">
                   TOP.REWARD
