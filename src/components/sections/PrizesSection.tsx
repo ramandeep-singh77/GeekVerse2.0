@@ -83,26 +83,24 @@ const PrizesSection = () => {
                   : 'bg-card border-border hover:border-primary/30'
               } ${idx % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}>
                 
-                {/* Prize icon/rank */}
-                <div className={`flex items-center justify-between mb-3 ${
-                  idx % 2 === 0 ? '' : 'flex-row-reverse'
+                {/* Prize icon */}
+                <div className={`flex items-center justify-center mb-3 ${
+                  idx % 2 === 0 ? 'justify-start' : 'justify-end'
                 }`}>
-                  <div className={`text-2xl ${prize.highlight ? 'text-primary' : 'text-muted-foreground'}`}>
-                    {prize.icon}
-                  </div>
-                  <span className={`font-mono text-xs ${
-                    prize.highlight ? 'text-primary' : 'text-muted-foreground'
+                  <div className={`inline-flex p-3 rounded-xl ${
+                    prize.highlight ? 'bg-primary/20' : 'bg-muted'
                   }`}>
-                    {prize.rank}
-                  </span>
+                    <prize.icon className={`w-6 h-6 ${prize.highlight ? 'text-primary' : 'text-primary/70'}`} />
+                  </div>
                 </div>
 
                 {/* Prize amount */}
                 <div className={`mb-2 ${idx % 2 === 0 ? 'text-left' : 'text-right'}`}>
-                  <AnimatedCounter 
-                    value={prize.amount} 
-                    suffix=""
-                  />
+                  <div className={`text-2xl font-mono font-bold ${
+                    prize.highlight ? 'text-primary text-glow' : 'text-foreground'
+                  }`}>
+                    <AnimatedCounter value={prize.value} />
+                  </div>
                 </div>
 
                 {/* Prize title */}
@@ -141,47 +139,7 @@ const PrizesSection = () => {
                   : 'bg-card border-border hover:border-primary/30'
               }`}
             >
-              {/* Prize icon/rank */}
-              <div className="flex items-center justify-between mb-4">
-                <div className={`text-3xl ${prize.highlight ? 'text-primary' : 'text-muted-foreground'}`}>
-                  {prize.icon}
-                </div>
-                <span className={`font-mono text-xs ${
-                  prize.highlight ? 'text-primary' : 'text-muted-foreground'
-                }`}>
-                  {prize.rank}
-                </span>
-              </div>
-
-              {/* Prize amount */}
-              <div className="mb-3">
-                <AnimatedCounter 
-                  value={prize.amount} 
-                  suffix=""
-                />
-              </div>
-
-              {/* Prize title */}
-              <h3 className={`text-xl font-semibold font-heading mb-3 ${
-                prize.highlight ? 'text-primary' : 'text-foreground'
-              }`}>
-                {prize.title}
-              </h3>
-
-              {/* Prize description */}
-              <p className="text-muted-foreground">
-                {prize.description}
-              </p>
-
-              {/* Execution line effect */}
-              {prize.highlight && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-muted overflow-hidden rounded-b-lg">
-                  <div className="h-full bg-primary execution-line"></div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+              {/* Top reward badge */}
               {prize.highlight && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-primary-foreground font-mono text-xs rounded">
                   TOP.REWARD
