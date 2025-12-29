@@ -44,12 +44,12 @@ const HeroSection = () => {
         </div>
 
         {/* Tagline */}
-        <p className="text-xl sm:text-2xl md:text-3xl font-heading font-semibold text-foreground mb-12 text-center">
+        <p className="text-xl sm:text-2xl md:text-3xl font-heading font-semibold text-foreground mb-8 md:mb-12 text-center">
           Build Beyond Limits
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
           <CommandButton variant="primary">
             Grant Access
           </CommandButton>
@@ -59,7 +59,7 @@ const HeroSection = () => {
         </div>
 
         {/* Stats bar */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+        <div className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-3xl mx-auto">
           {[
             { value: '24', label: 'HOURS' },
             { value: '500+', label: 'HACKERS' },
@@ -67,7 +67,7 @@ const HeroSection = () => {
             { value: '10+', label: 'MENTORS' },
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
-              <div className="font-mono text-3xl md:text-4xl font-bold text-primary drop-shadow-[0_0_15px_rgba(0,200,83,0.4)] counter">
+              <div className="font-mono text-2xl md:text-3xl lg:text-4xl font-bold text-primary drop-shadow-[0_0_15px_rgba(0,200,83,0.4)] counter">
                 {stat.value}
               </div>
               <div className="font-mono text-xs text-muted-foreground tracking-wider mt-1">

@@ -177,7 +177,7 @@ const AutoSlideCarousel = ({ items, type, title }: CarouselProps) => {
 
 const JudgesSection = () => {
   return (
-    <section id="judges" className="py-24 px-4 relative overflow-hidden">
+    <section id="judges" className="py-16 md:py-24 px-4 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent"></div>
       

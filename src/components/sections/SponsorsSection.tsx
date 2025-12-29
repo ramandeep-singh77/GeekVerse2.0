@@ -13,7 +13,7 @@ const sponsors = [
 
 const SponsorsSection = () => {
   return (
-    <section id="sponsors" className="py-24 px-4 relative">
+    <section id="sponsors" className="py-16 md:py-24 px-4 relative">
       <div className="container max-w-6xl mx-auto">
         <SectionHeader
           label="// SECTION_05"

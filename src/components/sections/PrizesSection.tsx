@@ -62,7 +62,7 @@ const AnimatedCounter = ({ value, suffix = '' }: { value: string; suffix?: strin
 
 const PrizesSection = () => {
   return (
-    <section id="prizes" className="py-24 px-4 relative">
+    <section id="prizes" className="py-16 md:py-24 px-4 relative">
       <div className="container max-w-6xl mx-auto">
         <SectionHeader
           label="// SECTION_04"
@@ -70,7 +70,7 @@ const PrizesSection = () => {
           description="Exceptional innovation deserves exceptional recognition. Here's what awaits the top performers."
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {prizes.map((prize, idx) => (
             <div
               key={idx}

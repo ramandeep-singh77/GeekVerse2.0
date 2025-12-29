@@ -27,7 +27,7 @@ const features = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-24 px-4 relative">
+    <section id="about" className="py-16 md:py-24 px-4 relative">
       <div className="container max-w-6xl mx-auto">
         <SectionHeader
           label="// SECTION_01"

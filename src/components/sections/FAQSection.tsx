@@ -62,7 +62,7 @@ const FAQItem = ({ faq, index }: { faq: typeof faqs[0]; index: number }) => {
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="py-24 px-4 relative">
+    <section id="faq" className="py-16 md:py-24 px-4 relative">
       <div className="container max-w-4xl mx-auto">
         <SectionHeader
           label="// SECTION_07"

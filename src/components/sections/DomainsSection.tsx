@@ -30,7 +30,7 @@ const domains = [
 
 const DomainsSection = () => {
   return (
-    <section id="domains" className="py-24 px-4 relative">
+    <section id="domains" className="py-16 md:py-24 px-4 relative">
       <div className="container max-w-6xl mx-auto">
         <SectionHeader
           label="// SECTION_02"
@@ -38,11 +38,11 @@ const DomainsSection = () => {
           description="Select your compile target. Each domain represents a unique challenge pathway."
         />
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {domains.map((domain, idx) => (
             <div
               key={idx}
-              className="group relative p-6 rounded-lg bg-card border border-border overflow-hidden card-hover cursor-pointer"
+              className="group relative p-4 md:p-6 rounded-lg bg-card border border-border overflow-hidden card-hover cursor-pointer"
             >
               {/* Hover glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
