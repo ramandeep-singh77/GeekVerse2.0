@@ -1,0 +1,98 @@
+import SectionHeader from '../SectionHeader';
+import { Play, Users, Lightbulb, Code, MessageSquare, Flag } from 'lucide-react';
+
+const steps = [
+  { icon: Play, title: 'Initialize Registration', time: 'T-14 Days', status: 'active' },
+  { icon: Users, title: 'Form Teams', time: 'T-7 Days', status: 'pending' },
+  { icon: Lightbulb, title: 'Ideation Phase', time: 'Day 1 - 0:00', status: 'pending' },
+  { icon: Code, title: 'Build Sprint', time: 'Day 1 - 2:00', status: 'pending' },
+  { icon: MessageSquare, title: 'Mentor Review', time: 'Day 1 - 18:00', status: 'pending' },
+  { icon: Flag, title: 'Final Commit & Pitch', time: 'Day 2 - 0:00', status: 'pending' },
+];
+
+const TimelineSection = () => {
+  return (
+    <section id="timeline" className="py-24 px-4 relative overflow-hidden">
+      <div className="container max-w-6xl mx-auto">
+        <SectionHeader
+          label="// SECTION_06"
+          title="Execution Pipeline"
+          description="Your journey from registration to victory. Each phase builds upon the last."
+        />
+
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block"></div>
+          
+          {/* Data flow effect */}
+          <div className="absolute left-1/2 top-0 w-px h-full -translate-x-1/2 hidden md:block overflow-hidden">
+            <div className="w-full h-20 bg-gradient-to-b from-transparent via-primary to-transparent animate-[flow_3s_linear_infinite]"></div>
+          </div>
+
+          <div className="space-y-8 md:space-y-0">
+            {steps.map((step, idx) => (
+              <div
+                key={idx}
+                className={`relative flex items-center ${
+                  idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}
+              >
+                {/* Content */}
+                <div className={`flex-1 ${idx % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
+                  <div className={`inline-block p-6 rounded-lg bg-card border border-border ${
+                    step.status === 'active' ? 'border-primary/50 glow-sm' : ''
+                  }`}>
+                    <div className={`flex items-center gap-3 mb-2 ${
+                      idx % 2 === 0 ? 'md:flex-row-reverse' : ''
+                    }`}>
+                      <span className={`font-mono text-xs ${
+                        step.status === 'active' ? 'text-primary' : 'text-muted-foreground'
+                      }`}>
+                        {step.time}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground font-heading">
+                      {step.title}
+                    </h3>
+                    {step.status === 'active' && (
+                      <div className="mt-2 font-mono text-xs text-primary flex items-center gap-2">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        </span>
+                        CURRENTLY EXECUTING
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Node */}
+                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-lg bg-card border-2 border-border items-center justify-center z-10">
+                  <step.icon className={`w-5 h-5 ${
+                    step.status === 'active' ? 'text-primary' : 'text-muted-foreground'
+                  }`} />
+                </div>
+
+                {/* Spacer for the other side */}
+                <div className="hidden md:block flex-1"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Progress bar */}
+        <div className="mt-16">
+          <div className="flex items-center justify-between text-xs font-mono text-muted-foreground mb-2">
+            <span>PROGRESS.STATUS</span>
+            <span>1 / 6 PHASES</span>
+          </div>
+          <div className="h-2 bg-muted rounded-full overflow-hidden">
+            <div className="h-full w-[16%] bg-primary rounded-full execution-line"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TimelineSection;
