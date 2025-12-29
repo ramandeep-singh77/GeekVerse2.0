@@ -36,15 +36,15 @@ const HeroSection = () => {
 
         {/* Subtitle */}
         <div className="mb-8">
-          <div className="inline-flex items-center gap-4 text-lg md:text-xl text-muted-foreground">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-base sm:text-lg md:text-xl text-muted-foreground">
             <Terminal className="w-5 h-5 text-primary" />
-            <span className="font-mono">A 24-Hour Engineering Hackathon</span>
-            <Cpu className="w-5 h-5 text-primary" />
+            <span className="font-mono text-center">A 24-Hour Engineering Hackathon</span>
+            <Cpu className="w-5 h-5 text-primary hidden sm:block" />
           </div>
         </div>
 
         {/* Tagline */}
-        <p className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-12">
+        <p className="text-xl sm:text-2xl md:text-3xl font-heading font-semibold text-foreground mb-12 text-center">
           Build Beyond Limits
         </p>
 
